@@ -73,7 +73,7 @@ namespace Services.Catalog.Services
             }
             return Response<List<CourseDto>>.Success(_mapper.Map<List<CourseDto>>(courses),200);
         }
-        public async Task<Response<CourseDto>>Create(CourseCreateDto courseCreateDto)
+        public async Task<Response<CourseDto>>CreateAsync(CourseCreateDto courseCreateDto)
         {
             var newCourse = _mapper.Map<Course>(courseCreateDto);
             newCourse.CreatedTime = DateTime.Now;
