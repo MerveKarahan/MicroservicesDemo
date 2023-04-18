@@ -9,15 +9,16 @@ namespace Services.Catalog.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    internal class CategoryController : BaseController
+    public class CategoryController : BaseController
     {
         private readonly ICategoryService _categoryService;
 
-        internal CategoryController(ICategoryService categoryService)
+        public CategoryController(ICategoryService categoryService)
         {
             _categoryService = categoryService;
         }
-        [HttpGet("{id}")]
+
+        [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             var categories= await _categoryService.GetAllAsync();

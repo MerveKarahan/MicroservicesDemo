@@ -9,7 +9,7 @@ namespace Services.Catalog.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    internal class CourseController : BaseController
+    public class CourseController : BaseController
     {
         private readonly ICourseService _courseService;
 
@@ -17,6 +17,7 @@ namespace Services.Catalog.Controllers
         {
            _courseService = courseService;
         }
+        [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             var responce = await _courseService.GetAllAsync();
@@ -28,6 +29,7 @@ namespace Services.Catalog.Controllers
             var responce =await _courseService.GetByIdAsync(id);
             return CreateActionResultInstant(responce);
         }
+        [HttpGet]
         [Route("/api/[controller]/GetAllByUserId/{userId}")]
         public async Task<IActionResult> GetAllByUserId(string userId)
         {

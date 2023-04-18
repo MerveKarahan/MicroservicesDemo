@@ -1,6 +1,6 @@
 ﻿namespace Services.Catalog.Settings
 {
-   internal interface IDatabaseSettings
+   public interface IDatabaseSettings
     {
         public string CourseCategoryName { get; set; }
         public string CategoryCollectionName { get; set; }
