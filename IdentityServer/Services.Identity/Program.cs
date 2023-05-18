@@ -41,22 +41,24 @@ namespace Services.Identity
 
             try
             {
-               
-
                 var host = CreateHostBuilder(args).Build();
 
                 using (var scope = host.Services.CreateScope())
                 {
                     var serviceProvider = scope.ServiceProvider;
-                    var applicationDbContext = serviceProvider.GetRequiredService<ApplicationDbContext>();//GetRequiredService bunu kullandım service yoksa exception patlansın diye.
-                    applicationDbContext.Database.Migrate(); //migrate hem veri tabanı yoksa oluşturcak hem de uygulanmamış migration varsa uyguluycak.
-                    var userManageer= serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-                    if (!userManageer.Users.Any())
-                    {
-                        userManageer.CreateAsync(new ApplicationUser { UserName = "Merve Karahan", Email = "betulmervekarahan@gmail.com", City = "Tekirdağ" }, "Telefon1313**").Wait(); //password hasleneceği için bu şekilde kullandım. wait asenktron metodumu senkron yaptı.
-                    }
 
+                    var applicationDbContext = serviceProvider.GetRequiredService<ApplicationDbContext>();
+
+                    applicationDbContext.Database.Migrate();
+
+                    var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+                    if (!userManager.Users.Any())
+                    {
+                        userManager.CreateAsync(new ApplicationUser { UserName = "fcakiroglu16", Email = "f-cakiroglu@outlook.com", City = "Ankara" }, "Password12*").Wait();
+                    }
                 }
+
                 Log.Information("Starting host...");
                 host.Run();
                 return 0;
