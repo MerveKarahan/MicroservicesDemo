@@ -41,6 +41,7 @@ namespace Services.Identity
                     AllowedGrantTypes=GrantTypes.ClientCredentials, //Permission Type, Bununla birlikte refreş token olmaz çünkü zaten elimde zaten sabit client Id değeri var.{
                     AllowedScopes={ "catalog_fullpermission" , "photo_stock_fullpermission",IdentityServerConstants.LocalApi.ScopeName }
                 }
+
             };
     }
 }

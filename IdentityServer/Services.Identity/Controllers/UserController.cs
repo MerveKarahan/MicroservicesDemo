@@ -1,14 +1,19 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Services.Identity.Dtos;
 using Services.Identity.Models;
+using System.Linq;
 using System.Threading.Tasks;
+using static IdentityServer4.IdentityServerConstants;
 
 namespace Services.Identity.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize(LocalApi.PolicyName)]
+    [Route("api/[controller]/[action]")]
     [ApiController]
+
     public class UserController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -19,21 +24,19 @@ namespace Services.Identity.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult>SingUp(SingUpDto singUpDto)
+        public async Task<IActionResult> SignUp(SignUpDto signupDto)
         {
             var user = new ApplicationUser
             {
-                UserName = singUpDto.UserName,
-                Email = singUpDto.Email,
-                City = singUpDto.City,
+                UserName = signupDto.UserName,
+                Email = signupDto.Email,
+                City = signupDto.City
             };
-            var result = await _userManager.CreateAsync(user,singUpDto.Password);
-            if (!result.Succeeded)
-            {
-                return BadRequest();
 
-            }
-            return Ok() ;
+            var result = await _userManager.CreateAsync(user, signupDto.Password);
+
+
+            return NoContent();
         }
     }
 }
