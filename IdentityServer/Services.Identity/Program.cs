@@ -55,7 +55,7 @@ namespace Services.Identity
 
                     if (!userManager.Users.Any())
                     {
-                        userManager.CreateAsync(new ApplicationUser { UserName = "fcakiroglu16", Email = "f-cakiroglu@outlook.com", City = "Ankara" }, "Password12*").Wait();
+                        userManager.CreateAsync(new ApplicationUser { UserName = "mervebetul4", Email = "betulmervekarahan@gmail.com", City = "Tekirdağ" }, "Password12*").Wait();
                     }
                 }
 
