@@ -55,6 +55,7 @@ namespace Services.Identity
                 {
                     ClientName= "client",
                     ClientId="WebMvcClientForUser",
+                    AllowOfflineAccess=true,
                     ClientSecrets={new Secret ("secret".Sha256()) },
                     AllowedGrantTypes=GrantTypes.ResourceOwnerPassword, 
                     AllowedScopes=
@@ -63,7 +64,7 @@ namespace Services.Identity
                         IdentityServerConstants.StandardScopes.Address,
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile, 
-                        IdentityServerConstants.StandardScopes.OfflineAccess,"roles"
+                        IdentityServerConstants.StandardScopes.OfflineAccess,IdentityServerConstants.LocalApi.ScopeName,"roles"
                     },
                     AccessTokenLifetime=1*60*60,
                     RefreshTokenExpiration=TokenExpiration.Absolute,
